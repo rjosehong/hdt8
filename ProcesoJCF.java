@@ -2,12 +2,13 @@ import java.io.IOException;
 import java.nio.file.*;
 import java.util.*;
 
-public class Proceso {
+public class ProcesoJCF {
 
     public static void main(String[] args) {
 
         List<Paciente> listaOriginal = new ArrayList<>();
-        PriorityQueue<Paciente> cola = new PriorityQueue<>();
+
+        Queue<Paciente> cola = new PriorityQueue<>();
 
         try {
             List<String> lineas = Files.readAllLines(Paths.get("pacientes.txt"));
@@ -19,11 +20,10 @@ public class Proceso {
                 String diagnostico = partes[1].trim();
                 String prioridad = partes[2].trim();
 
-                Paciente paciente = new Paciente(nombre, diagnostico, prioridad);
+                Paciente p = new Paciente(nombre, diagnostico, prioridad);
 
-                listaOriginal.add(paciente);
-
-                cola.add(paciente);
+                listaOriginal.add(p);
+                cola.offer(p);
             }
 
         } catch (IOException e) {
